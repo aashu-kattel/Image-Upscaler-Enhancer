@@ -1,3 +1,6 @@
+Ref: https://claude.ai/chat/b2bba9ac-41cc-4154-8fef-c2af55ac70d3
+
+##Image Scaler/Enhancer leveraging Lanczos Interpolation and CLAHE Algorithm
 
 To Run: streamlit run main.py
 

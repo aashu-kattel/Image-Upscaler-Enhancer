@@ -20,6 +20,8 @@
    - Mathematical reconstruction of pixel values
    - Minimize aliasing and preserve details
 
+[DecompressionBombWarning: Image size (109499904 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.]
+
 4. **Contrast Enhancement (CLAHE)**
    - Convert image to LAB color space
    - Split channels (Lightness, A, B)
