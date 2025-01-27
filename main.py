@@ -55,6 +55,29 @@ class AdvancedImageUpscaler:
         
         return enhanced
 
+    @staticmethod
+    def adjust_saturation(image, saturation_scale=3.0): #0.0 to 3.0. 
+        """
+        Adjust the saturation of the image
+        
+        Args:
+            image (numpy.ndarray): Input image
+            saturation_scale (float): Scale to adjust saturation by
+        
+        Returns:
+            numpy.ndarray: Saturation-adjusted image
+        """
+        # Convert image to HSV color space
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        
+        # Scale the saturation channel
+        hsv[:, :, 1] = cv2.multiply(hsv[:, :, 1], saturation_scale)
+        
+        # Convert back to BGR color space
+        saturated_image = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+        
+        return saturated_image
+
     def upscale(self, image, scale_factor=2):
         """
         Advanced upscaling with multiple enhancement techniques
