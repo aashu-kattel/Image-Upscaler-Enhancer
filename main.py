@@ -56,7 +56,7 @@ class AdvancedImageUpscaler:
         return enhanced
 
     @staticmethod
-    def adjust_saturation(image, saturation_scale=3.0): #0.0 to 3.0. 
+    def adjust_saturation(image, saturation_scale=3.0):
         """
         Adjust the saturation of the image
         
@@ -138,13 +138,17 @@ def main():
         file_bytes = np.array(bytearray(uploaded_file.read()), dtype=np.uint8)
         original_image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
-        # Create columns for before and after
-        col1, col2 = st.columns(2)
+        # Create columns for before and after with different widths
+        col1, spacer, col2 = st.columns([4, 0.5, 5])
 
         with col1:
             st.subheader("Original Image")
-            st.image(cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB), 
-                     use_column_width=True)
+            # Display original image at 90% of column width
+            st.image(
+                cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB),
+                use_column_width=True,
+                width=300  # Base width for original image
+            )
             
             # Display original image details
             orig_height, orig_width = original_image.shape[:2]
@@ -157,9 +161,12 @@ def main():
             upscaler = AdvancedImageUpscaler()
             enhanced_image = upscaler.upscale(original_image, scale_factor)
             
-            # Display enhanced image
-            st.image(cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2RGB), 
-                     use_column_width=True)
+            # Display enhanced image at full column width
+            st.image(
+                cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2RGB),
+                use_column_width=True,
+                width=400  # Larger base width for enhanced image
+            )
             
             # Display enhanced image details
             new_height, new_width = enhanced_image.shape[:2]

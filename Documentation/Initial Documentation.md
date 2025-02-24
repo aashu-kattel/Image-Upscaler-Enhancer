@@ -1,4 +1,7 @@
 Ref: https://claude.ai/chat/b2bba9ac-41cc-4154-8fef-c2af55ac70d3
+https://claude.ai/chat/173e5b57-d7c7-48ca-9391-dca200b3e28c
+
+
 
 ##Image Scaler/Enhancer leveraging Lanczos Interpolation and CLAHE Algorithm
 
