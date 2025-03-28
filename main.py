@@ -107,13 +107,13 @@ class AdvancedImageUpscaler:
 def main():
     # Streamlit page configuration
     st.set_page_config(
-        page_title="Img Upscale/Enhancer", 
+        page_title="Image Upscale/Enhancer", 
         page_icon=":camera:",
         layout="wide"
     )
 
     # Title and description
-    st.title("↗️ Image Upscaler/Enhancer")
+    st.title("↗️ ResoRise")
     st.write("Dramatically improve image quality with multi-stage enhancement")
 
     # Sidebar for user inputs
