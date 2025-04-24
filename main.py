@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 import streamlit as st
 from PIL import Image
 import io
@@ -114,7 +115,7 @@ def main():
 
     # Title and description
     st.title("↗️ ResoRise")
-    st.write("Dramatically improve image quality with multi-stage enhancement")
+    st.write("Not Just Sharper. Smarter. Upscale with Precision and Insight.")
 
     # Sidebar for user inputs
     st.sidebar.header("Enhancement Options")
@@ -184,6 +185,32 @@ def main():
                 file_name=f"enhanced_{uploaded_file.name}",
                 mime="image/png"
             )
+
+            # --- Image Stats Section ---
+            st.subheader("📊 Image Statistics")
+
+            # 1. Histogram
+            st.markdown("**Color Histogram**")
+            fig, ax = plt.subplots()
+            colors = ('b', 'g', 'r')
+            for i, color in enumerate(colors):
+                hist = cv2.calcHist([enhanced_image], [i], None, [256], [0, 256])
+                ax.plot(hist, color=color)
+            ax.set_xlim([0, 256])
+            st.pyplot(fig)
+
+            # 2. Sharpness (Laplacian)
+            laplacian_var = cv2.Laplacian(cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2GRAY), cv2.CV_64F).var()
+            st.markdown(f"**Sharpness (Variance of Laplacian):** `{laplacian_var:.2f}`")
+
+            # 3. Color Distribution
+            mean_colors = cv2.mean(enhanced_image)[:3]  # BGR
+            total = sum(mean_colors)
+            percent_colors = [(c / total) * 100 for c in mean_colors]
+            st.markdown("**Color Distribution (%):**")
+            st.write(f"🔵 Blue: {percent_colors[0]:.2f}%")
+            st.write(f"🟢 Green: {percent_colors[1]:.2f}%")
+            st.write(f"🔴 Red: {percent_colors[2]:.2f}%")
 
     else:
         # Placeholder instructions
