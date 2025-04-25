@@ -223,9 +223,16 @@ def main():
         "Enhancement techniques:\n"
         "1. Lanczos Upscaling\n"
         "2. Adaptive Contrast Enhancement\n"
-        "3. Unsharp Masking for Detail Preservation"
+        "3. Unsharp Masking for Detail Preservation\n"
+        "4. Post-Processed Image Stats"
+    )
+    st.sidebar.markdown(
+        "More from [developer.](https://www.aashutoshkattel.com.np)\n"
+    )
+    st.sidebar.markdown(
+        '<a href="https://github.com/aashu-kattel/Image-Upscaler-Enhancer/issues" style="color:orange;">Report/raise issue -> </a>',
+        unsafe_allow_html=True
     )
 
-# Run the app
 if __name__ == "__main__":
     main()
